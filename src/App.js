@@ -3,7 +3,7 @@ import _ from "lodash";
 import CompleteTask from "./components/CompleteTask";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
-import {getTodo, addTodo, markTaskComplete, markTaskFavorite} from "./AppService";
+import {getTodo, markTaskComplete, markTaskFavorite} from "./AppService";
 import "./App.css";
 
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [loadingCount, setCount] = useState(0);
+  
   
   const convertDate = time => new Date(time).getTime();
   useEffect( 
@@ -40,25 +41,13 @@ export default function App() {
     e => e.isCompleted
   );
 
-  const handleAddTodo = async (newTaskName) => {
-    try {
-      await addTodo(newTaskName);
-      setIsLoading(true);
-      setIsError(false);
-      setCount(loadingCount + 1);
-     
-    } catch (err) {
-      console.log(err);
-      setIsError(true);
-    }
-
-  }
+ 
 
   const handleChangeCompleteStatus = async (taskId, newStatus) => {
     try {
-      await markTaskComplete(taskId, newStatus);
       setIsLoading(true);
       setIsError(false);
+      await markTaskComplete(taskId, newStatus);
       setCount(loadingCount + 1);
     } catch (err) {
       console.log(err);
@@ -67,38 +56,22 @@ export default function App() {
     
   const handleChangeFavoriteStatus = async (taskId, newStatus) => {
     try {
-      await markTaskFavorite(taskId, newStatus);
       setIsLoading(true);
       setIsError(false);
+      await markTaskFavorite(taskId, newStatus);
       setCount(loadingCount + 1);
     } catch (err) {
       console.log(err);
     } 
   }
 
-  // setTaskList(
-  //   taskList.map(task => 
-  //     (task.id = taskId) ? {
-  //       ...task,
-  //       isFavorite: newStatus,
-  //     } : task
-  //   )
-  // );
-  // setTaskList(
-    //   taskList.map(task => 
-    //     (task.id = taskId) ? {
-    //       ...task,
-    //       isCompleted: newStatus,
-    //       completedDate: new Date().getTime(),
-    //     } : task
-    //   )
-    // );
+  
 
   const renderContent = () => {
     return isLoading ? 'Loading...' : (
       <div className = "App">
         <Header 
-        onAddTodo = {handleAddTodo}
+          setLoadingCount = {setLoadingCount}
         />
         <TaskList
           incompletedList = {incompletedList}

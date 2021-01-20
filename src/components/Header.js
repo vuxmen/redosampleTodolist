@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import classes from "./Header.module.css";
+import {addTodo} from "./../AppService";
+import {useSelector, useDispatch} from 'react-redux';
+import {addNewtodo} from '../redux/actionCreator';
 
-export default function Header({onAddTodo}) {
-  const [currentItem, setCurrentItem] = useState('');
-
-  const handleChange = (value) => setCurrentItem(value); 
+export default function Header({setLoadingCount}) {
+  const currentItem = useSelector(state => state.newTodoTask);
+  const dispatch = useDispatch();
+  const handleChange = (value) => {
+    dispatch(addNewtodo(value)); 
+  }
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13 && currentItem) {
-      onAddTodo(currentItem);
-      setCurrentItem('');
+      console.log(currentItem);
+      dispatch(addNewtodo(''));
+      handleAddTodo(currentItem);
     }
+  }
+
+  const handleAddTodo = async (newTaskName) => {
+    try {
+      await addTodo(newTaskName);
+      setLoadingCount();
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
 

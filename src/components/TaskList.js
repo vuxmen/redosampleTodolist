@@ -13,7 +13,6 @@ export default function TaskList({
     ['isFavorite', 'createdDate'],
     ['desc', 'desc']
   );
-  console.log(sortIncompletedList);
 
   
   return (
