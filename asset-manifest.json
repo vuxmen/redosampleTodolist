@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/redosampletodolist/static/css/main.a6edf7da.chunk.css",
+    "main.js": "/redosampletodolist/static/js/main.f3595e62.chunk.js",
+    "main.js.map": "/redosampletodolist/static/js/main.f3595e62.chunk.js.map",
+    "runtime-main.js": "/redosampletodolist/static/js/runtime-main.f1f114a4.js",
+    "runtime-main.js.map": "/redosampletodolist/static/js/runtime-main.f1f114a4.js.map",
+    "static/js/2.adeb6874.chunk.js": "/redosampletodolist/static/js/2.adeb6874.chunk.js",
+    "static/js/2.adeb6874.chunk.js.map": "/redosampletodolist/static/js/2.adeb6874.chunk.js.map",
+    "index.html": "/redosampletodolist/index.html",
+    "static/css/main.a6edf7da.chunk.css.map": "/redosampletodolist/static/css/main.a6edf7da.chunk.css.map",
+    "static/js/2.adeb6874.chunk.js.LICENSE.txt": "/redosampletodolist/static/js/2.adeb6874.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f1f114a4.js",
+    "static/js/2.adeb6874.chunk.js",
+    "static/css/main.a6edf7da.chunk.css",
+    "static/js/main.f3595e62.chunk.js"
+  ]
+}
