@@ -1,7 +1,8 @@
 
-export const newTodoTask = (state = '', action) => {
+
+export const emailReducer = (state = '', action) => {
     switch(action.type) {
-        case 'CHANGE_INPUT' : {
+        case 'CHANGE_EMAIL' : {
             return action.payload;
         }
         default: return state;

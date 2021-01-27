@@ -17,7 +17,7 @@ export default function TaskList({
   
   return (
     <ListItem
-        listName = "Task"
+        listName = "Incompleted"
         renderedItem = {sortIncompletedList}
         onChangeCompleteStatus = {onChangeCompleteStatus}
         onChangeFavoriteStatus = {onChangeFavoriteStatus}

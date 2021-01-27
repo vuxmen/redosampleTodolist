@@ -1,3 +1,6 @@
+.listTask {
+  margin-bottom: 2rem;
+}
 .listTask input[type="checkbox"] {
   appearance: none;
   width: 20px;
@@ -40,4 +43,8 @@
 }
 .listTask .newColorClass {
   color: red;
+}
+
+.listTask h2 {
+  padding-left: 1.8rem;
 }
