@@ -1,0 +1,6 @@
+export const actionTypes = {
+    CHANGE_EMAIL: 'CHANGE_EMAIL',
+    CHANGE_PASSWORD: 'CHANGE_PASSWORD',
+    CHANGE_INPUT: 'CHANGE_INPUT',
+    LOGIN: 'LOGIN',
+}

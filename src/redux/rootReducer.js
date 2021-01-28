@@ -1,11 +1,9 @@
 import {combineReducers} from 'redux';
 import {newTodoTask} from './reducer/newTodoTask';
-import {emailReducer} from './reducer/email';
-import {passwordReducer} from './reducer/password';
+import {authReducer} from './reducer/auth';
 
 export default combineReducers({
     newTodoTask,
-    emailReducer,
-    passwordReducer
+    auth: authReducer,
 });
 

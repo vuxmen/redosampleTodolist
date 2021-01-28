@@ -1,54 +1,60 @@
-import React,  {useState} from 'react';
-import style from './Login.module.css';
-import {useHistory} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import {changeEmailInputValue, changePasswordInputValue} from '../redux/actionCreator';
-import {userAccount} from '../userAccount';
-
+import React from "react";
+import style from "./Login.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  changeEmailInputValue,
+  changePasswordInputValue,
+  login,
+} from "../redux/actionCreator";
+import { Redirect } from "react-router-dom";
 
 export default function Login() {
-    const [failStatus, setFailStatus] = useState('');
-    const email = useSelector(state => state.emailReducer);
-    const password = useSelector(state => state.passwordReducer);
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const handleCheckEmail = (value) => {
-       if (userAccount().find(user => user.email === value)) {
-        dispatch(changeEmailInputValue(value));
-        setFailStatus('');
-       } 
-       else if (value === '') {
-        setFailStatus('');
-        return
-       }
-       else setFailStatus('* Email này chưa được đăng ký, vui lòng nhập lại');
-    }
-    const handleCheckPassword = (value) => {
-        if (userAccount().find(user => user.email === email).password === value) {
-            dispatch(changePasswordInputValue(value));
-            setFailStatus('');
-        } 
-        else if (value === '') {
-            setFailStatus('');
-            return
-        }
-        else setFailStatus('* Sai password, vui lòng nhập lại');
-    }
+  const email = useSelector((state) => state.auth.email);
+  const password = useSelector((state) => state.auth.password);
+  const isLoginFail = useSelector((state) => state.auth.isLoginFail);
+  const currentUser = useSelector((state) => state.auth.user);
 
-    const handleLinktoTodoList = () => {
-       if (email !== '' && password !== '' && failStatus === '') 
-        history.push(`/TodoList/${userAccount().find(user => user.email === email).name}`);
-    }
+  const dispatch = useDispatch();
+
+  const handleChangeEmail = (newValue) => {
+    dispatch(changeEmailInputValue(newValue));
+  };
+
+  const handleChangePassword = (newValue) => {
+    dispatch(changePasswordInputValue(newValue));
+  };
+
+  const handleLogin = () => {
+    dispatch(login());
+  };
+
+  const renderLoginContent = () => {
     return (
-        <div className = {style.container}>
-            <div className = {style.login}>
-                <h1>Welcome TodoList</h1>
-                <input type="text" placeholder="Type your email..." onBlur = {e => handleCheckEmail(e.target.value)}/>
-                <input type="text" placeholder="Type your password..." onBlur = {e => handleCheckPassword(e.target.value)}/>
-                <button onClick = {handleLinktoTodoList}>Login</button>
-                <span>{failStatus}</span>
-            </div>
+      <div className={style.container}>
+        <div className={style.login}>
+          <h1>Welcome TodoList</h1>
+          <input
+            type="text"
+            value={email}
+            placeholder="Type your email..."
+            onChange={(e) => handleChangeEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            value={password}
+            placeholder="Type your password..."
+            onChange={(e) => handleChangePassword(e.target.value)}
+          />
+          <button onClick={handleLogin}>Login</button>
+          <span>
+            {isLoginFail
+              ? "* Tài khoản hoặc mật khẩu không chính xac, vui lòng nhập lại"
+              : ""}
+          </span>
         </div>
+      </div>
     );
-}
+  };
 
+  return currentUser ? <Redirect to="TodoList" /> : renderLoginContent();
+}

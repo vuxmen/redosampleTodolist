@@ -1,21 +1,38 @@
+import { actionTypes } from "./actionTypes";
 
 export const changeHeaderInputValue = (newTask) => {
-    return {
-        type: "CHANGE_INPUT", 
-        payload: newTask
-    }
-}
+  return {
+    type: actionTypes.CHANGE_INPUT,
+    payload: {
+      newTask,
+    },
+  };
+};
 
 export const changeEmailInputValue = (newEmail) => {
-    return {
-        type: "CHANGE_EMAIL",
-        payload: newEmail
-    }
-}
+  return {
+    type: actionTypes.CHANGE_EMAIL,
+    payload: {
+      newEmail,
+    },
+  };
+};
 
 export const changePasswordInputValue = (newPassword) => {
-    return {
-        type: "CHANGE_PASSWORD",
-        payload: newPassword
-    }
-}
+  return {
+    type: actionTypes.CHANGE_PASSWORD,
+    payload: {
+      newPassword,
+    },
+  };
+};
+
+export const login = () => ({
+    type: actionTypes.LOGIN,
+    payload: {}
+});
+
+export const logout = () => ({
+    type: actionTypes.LOGIN,
+    payload: {}
+});
